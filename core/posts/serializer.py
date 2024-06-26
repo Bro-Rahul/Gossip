@@ -125,3 +125,19 @@ class PostAngryUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['angry']
+
+
+class CommentLikeUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['like']
+
+class CommentDislikeUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['dislike']
+
+class CommentUpvoteUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['upvote']

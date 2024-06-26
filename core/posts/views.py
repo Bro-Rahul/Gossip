@@ -201,3 +201,16 @@ class PostDislikeUpdateView(UpdateAPIView):
 class PostAngryUpdateView(UpdateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostAngryUpdateSerializer
+
+class CommentLikeUpdateView(UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentLikeUpdateSerializer
+
+class CommentDislikeUpdateView(UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentDislikeUpdateSerializer
+
+class CommentUpvoteUpdateView(UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentUpvoteUpdateSerializer
+

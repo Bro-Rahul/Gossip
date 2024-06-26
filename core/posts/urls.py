@@ -15,4 +15,9 @@ urlpatterns = [
     path('posts/<int:pk>/loved/', views.PostLovedUpdateView.as_view(), name='post-loved-update'),
     path('posts/<int:pk>/dislike/', views.PostDislikeUpdateView.as_view(), name='post-dislike-update'),
     path('posts/<int:pk>/angry/', views.PostAngryUpdateView.as_view(), name='post-angry-update'),
+
+    path('comment/<int:pk>/loved/', views.CommentLikeUpdateView.as_view(), name='comment-like-update'),
+    path('comment/<int:pk>/dislike/', views.CommentDislikeUpdateView.as_view(), name='comment-dislike-update'),
+    path('comment/<int:pk>/upvote/', views.CommentUpvoteUpdateView.as_view(), name='comment-upvote-update'),
+
 ]
