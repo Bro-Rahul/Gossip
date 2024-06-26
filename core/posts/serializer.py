@@ -47,18 +47,19 @@ class PostSerializer(serializers.ModelSerializer):
     # for removing the duplicate commetns that are appear in the sub-comments ans actual comments of a same post 
     def to_representation(self, instance):
         represent = super().to_representation(instance)
-        comment_list = []
-        unique_comments = []
-        for comment in represent['comments']:
-            if comment['id'] not in comment_list:
-                comment_list.append(comment['id'])
-                sub_comment = []
-                for sub in comment['sub_comments']:
-                    comment_list.append(sub['id'])
-                    sub_comment.append(sub)
-                comment['sub_comments'] = sub_comment
-                unique_comments.append(comment)
-        represent['comments'] = unique_comments
+        seen = set()
+        
+        def formate_comments(comments):
+            unique_comments = []
+            for comment in comments:
+                if comment['id'] not in seen:
+                    seen.add(comment['id'])
+                    comment['sub_comments'] = formate_comments(comment['sub_comments'])
+                    unique_comments.append(comment)
+            return unique_comments
+        
+        if 'comments' in represent:
+            represent['comments'] = formate_comments(represent['comments'])
         return represent
 
 
